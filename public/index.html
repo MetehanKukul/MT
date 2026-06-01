@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parlayan Kozmetik - Güzelliğin Sırrı</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="top-header">
+    <div class="container top-header-inner">
+      <div class="store-links">
+        <a href="#" id="link-cus-service" style="color: inherit; text-decoration: none;">Müşteri Hizmetleri</a> &nbsp;|&nbsp; 
+        <a href="#" id="link-stores" style="color: inherit; text-decoration: none;">Mağazalarımız</a> &nbsp;|&nbsp; 
+        <a href="#" id="link-order-track" style="color: inherit; text-decoration: none;">Sipariş Takibi</a>
+      </div>
+      <div class="user-links" id="user-links-container" style="display:none;"></div>
+    </div>
+  </div>
+
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="logo">
+        <a href="/">
+          <span class="logo-text">PARLAYAN</span>
+          <span class="logo-sub">KOZMETİK</span>
+        </a>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Ürün, marka veya kategori ara..." />
+        <button class="search-btn" id="search-btn"><i class="ph ph-magnifying-glass"></i></button>
+      </div>
+      <div class="header-actions">
+        <div class="action-item account-menu-wrapper" id="btn-account">
+          <span class="icon"><i class="ph ph-user"></i></span>
+          <span id="account-text">Giriş Yap</span>
+          <div class="account-dropdown hidden" id="account-dropdown">
+            <div class="dropdown-pointer"></div>
+            <ul class="dropdown-list">
+              <li><a href="#" data-account-action="orders"><i class="ph ph-package"></i> <span class="dd-text">Siparişlerim</span></a></li>
+              <li><a href="#" id="menu-favs" data-account-action="favorites"><i class="ph ph-heart"></i> <span class="dd-text">Favorilerim</span></a></li>
+              <li><a href="#" data-account-action="addresses"><i class="ph ph-map-pin"></i> <span class="dd-text">Adreslerim</span></a></li>
+              <li><a href="#" data-account-action="campaigns"><i class="ph ph-diamond"></i> <span class="dd-text">Kampanyalarım</span></a></li>
+              <li><a href="#" data-account-action="card"><i class="ph ph-sparkle"></i> <span class="dd-text">Parlayan Kartım</span></a></li>
+              <li><a href="#" data-account-action="points"><i class="ph ph-star"></i> <span class="dd-text">Puanlarım</span></a></li>
+              <li><a href="#" data-account-action="rebuy"><i class="ph ph-arrows-clockwise"></i> <span class="dd-text">Tekrar Satın Al</span></a></li>
+              <li><a href="#" data-account-action="settings"><i class="ph ph-gear"></i> <span class="dd-text">Hesabım ve Ayarlarım</span></a></li>
+            </ul>
+            <div class="dropdown-footer">
+              <button class="logout-btn" id="btn-logout">Çıkış Yap <i class="ph ph-arrow-right" style="font-size:18px; vertical-align: middle;"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="action-item" id="btn-favs">
+          <span class="icon" style="position:relative"><i class="ph ph-heart"></i><span id="fav-badge" class="badge-count hidden">0</span></span>
+          <span>Favorilerim</span>
+        </div>
+        <div class="action-item cart" id="btn-cart">
+          <span class="icon" style="position:relative"><i class="ph ph-shopping-cart"></i><span id="cart-badge" class="badge-count hidden">0</span></span>
+          <span>Sepetim</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <nav class="main-nav">
+  <div class="nav-inner" style="max-width: 1400px; margin: 0 auto; padding: 0 25px;" id="nav-links">
+    <!-- Kategoriler dinamik yüklenecek -->
+  </div>
+</nav>
+
+
+  <main class="container main-content" id="main-content-area">
+    <div id="home-view">
+      <section class="hero-banner" id="home-banner">
+        <div class="banner-content">
+          <span class="banner-badge">💎 BAHAR KAMPANYASI</span>
+          <h1>Işıltınızı<br>Keşfedin</h1>
+          <p>Seçili lüks kozmetik ve kişisel bakım ürünlerinde net %50 indirim fırsatını kaçırmayın. Parlayan Kart ile sepette ekstra avantajları yakalayın!</p>
+          <button class="banner-btn" id="go-shopping">ALIŞVERİŞE BAŞLA &nbsp;➔</button>
+        </div>
+        <div class="banner-visual">
+          <img src="/images/hero_banner_cosmetics.png" alt="Luxury Cosmetics Banner" class="banner-img" />
+          <div class="floating-luxury-badge">
+            <span class="badge-num">%50</span>
+            <span class="badge-lbl">İndirim</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- KAMPANYALAR VE ÖZEL FIRSATLAR -->
+      <section class="section promo-campaigns-section">
+        <div class="section-title">
+          <h2>★ Kampanyalar & Özel Fırsatlar</h2>
+        </div>
+        
+        <div class="promo-grid">
+          <!-- Sol Kolon (Stack 2 Kart) -->
+          <div class="promo-left-col">
+            <!-- 1. Üst Sol Kart: Sepet Fırsatı (Sarı Kart) -->
+            <div class="promo-card promo-basket-deal" data-basket-deal-id="23">
+              <span class="basket-deal-tag">SEPETE ÖZEL FIRSAT</span>
+              <div class="basket-deal-content">
+                <img src="https://api.gratis.retter.io/1oakekr4e/CALL/Image/getImage/10604131-7ndPBDUTyW-01_1024x1024.jpg" class="basket-deal-img" alt="Beaulis Compact It Palette" onerror="this.onerror=null;this.src='/images/default-product.svg';" />
+                <div class="basket-deal-info">
+                  <span class="deal-brand">Beaulis</span>
+                  <span class="deal-name">Compact It 3 in 1 Palet</span>
+                  <div class="deal-prices">
+                    <span class="deal-old-price">109<sup>TL</sup></span>
+                    <span class="deal-subtxt">250 TL ve Üstü Alışverişe</span>
+                    <span class="deal-new-price">39,<sup>50 TL</sup></span>
+                  </div>
+                </div>
+              </div>
+              <div class="promo-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            
+            <!-- 2. Alt Sol Kart: Mağaza Adedi / Marka Bilgisi (Mor Kart) -->
+            <div class="promo-card promo-brand-badge">
+              <span class="brand-badge-sub">TÜRKİYE'NİN</span>
+              <div class="brand-badge-pill">800+ MAĞAZASIYLA</div>
+              <div class="brand-badge-title">
+                <span class="num-one">1</span>
+                <div class="brand-badge-lbl-box">
+                  <span class="lbl-num">NUMARALI</span>
+                  <span class="lbl-desc">KİŞİSEL BAKIM MARKETİ</span>
+                </div>
+              </div>
+              <div class="promo-dots">
+                <span class="dot"></span>
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sağ Kolon (Büyük İndirim Kartı) -->
+          <div class="promo-card promo-main-campaign">
+            <!-- Üst Sarı Kısım -->
+            <div class="main-campaign-top">
+              <div class="campaign-top-info">
+                <span class="campaign-limit">250 TL ve üzeri alışverişlerde</span>
+                <h3 class="campaign-title">Mağazada Bulunan<br>Popüler Seçili<br>Ürünlerde</h3>
+              </div>
+              <div class="campaign-discount-bubble">
+                <div class="discount-bubble-inner">
+                  <span class="bubble-percent">%60</span>
+                  <span class="bubble-text">indirim</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Alt Mor Kısım (4 Ürün Previews) -->
+            <div class="main-campaign-bottom">
+              <div class="campaign-products-row">
+                <!-- Ürün 1 -->
+                <div class="campaign-product-card" data-promo-item="1" data-promo-product-id="1027">
+                  <div class="camp-prod-img-box">
+                    <img src="https://api.gratis.retter.io/1oakekr4e/CALL/Image/getImage/10204657-x2GtU4ZCNT-01_1024x1024.jpg" alt="Pantene Şampuan" onerror="this.onerror=null;this.src='/images/default-product.svg';" />
+                  </div>
+                  <div class="camp-prod-info">
+                    <span class="camp-prod-brand">Pantene</span>
+                    <span class="camp-prod-name">Uzun ve Güçlü Şampuan</span>
+                  </div>
+                </div>
+                <!-- Ürün 2 -->
+                <div class="campaign-product-card" data-promo-item="2" data-promo-product-id="776">
+                  <div class="camp-prod-img-box">
+                    <img src="https://api.gratis.retter.io/1oakekr4e/CALL/Image/getImage/16000065-eBxhouqaBs-01_1024x1024.jpg" alt="Nivea Tıraş Köpüğü" onerror="this.onerror=null;this.src='/images/default-product.svg';" />
+                  </div>
+                  <div class="camp-prod-info">
+                    <span class="camp-prod-brand">Nivea</span>
+                    <span class="camp-prod-name">Hassas Tıraş Köpüğü</span>
+                  </div>
+                </div>
+                <!-- Ürün 3 -->
+                <div class="campaign-product-card" data-promo-item="3" data-promo-product-id="1">
+                  <div class="camp-prod-img-box">
+                    <img src="https://api.gratis.retter.io/1oakekr4e/CALL/Image/getImage/10540625-PNqAN8uBgH-01_1024x1024.jpg" alt="Beaulis BB Krem" onerror="this.onerror=null;this.src='/images/default-product.svg';" />
+                  </div>
+                  <div class="camp-prod-info">
+                    <span class="camp-prod-brand">Beaulis</span>
+                    <span class="camp-prod-name">Beautify It BB Krem</span>
+                  </div>
+                </div>
+                <!-- Ürün 4 -->
+                <div class="campaign-product-card" data-promo-item="4" data-promo-product-id="416">
+                  <div class="camp-prod-img-box">
+                    <img src="https://api.gratis.retter.io/1oakekr4e/CALL/Image/getImage/10167532-fhjf25vJZg-05_1024x1024.jpg" alt="Benri Islak Mendil" onerror="this.onerror=null;this.src='/images/default-product.svg';" />
+                  </div>
+                  <div class="camp-prod-info">
+                    <span class="camp-prod-brand">Benri</span>
+                    <span class="camp-prod-name">Mutfak Hijyen Mendili</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="campaign-disclaimer">
+                Bu kampanya 1-3 Haziran tarihleri arasında Parlayan Kozmetik online mağazasında ve mobil uygulamasında geçerlidir. Kampanyalarla birleştirilemez.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="brands-section" id="home-brands">
+        <!-- Markalar dinamik yüklenecek -->
+      </div>
+
+      <section class="section">
+        <div class="section-title">
+          <h2 id="products-heading">★ Haftanın Yıldızları</h2>
+        </div>
+        <div class="product-grid" id="product-grid">
+          <div style="padding:40px;text-align:center;grid-column: span 4;">Yükleniyor...</div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Ürün Detay Sayfası Alanı -->
+    <div id="pdp-view" style="display:none; padding-top:20px; padding-bottom: 40px;"></div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <!-- removed Kategoriler from footer to match what user said -->
+      <div>
+        <h4>Kurumsal</h4>
+        <ul>
+          <li><a href="#" class="footer-link" data-modal="about-modal">Hakkımızda</a></li>
+          <li><a href="#" class="footer-link" data-modal="stores-modal">Mağazalarımız</a></li>
+          <li><a href="#" class="footer-link" data-modal="contact-modal">İletişim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Yardım</h4>
+        <ul>
+          <li><a href="#" class="footer-link" data-modal="support-modal">Bize Ulaşın</a></li>
+          <li><a href="#" class="footer-link" data-modal="faq-modal">Sıkça Sorulan Sorular</a></li>
+          <li><a href="#" class="footer-link" data-modal="returns-modal">İade ve Değişim</a></li>
+        </ul>
+      </div>
+      <div class="newsletter-footer">
+        <h4>E-Bültene Kayıt Ol</h4>
+        <p>Kampanyalardan ilk senin haberin olsun!</p>
+        <input type="email" placeholder="E-posta Adresiniz" />
+        <button onclick="customAlert('Bültene başarıyla kayıt oldunuz, teşekkürler!', 'Tebrikler')">Kayıt Ol</button>
+      </div>
+    </div>
+  </footer>
+
+  <div id="site-overlay" class="site-overlay hidden"></div>
+
+  <div id="custom-alert-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3 id="custom-alert-title">Bilgi</h3>
+      <button class="close-btn" data-close="custom-alert-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="text-align: center; padding: 30px 20px;">
+      <p id="custom-alert-message" style="font-size: 16px; margin-bottom: 25px; line-height: 1.5; color: #555;"></p>
+      <button class="primary-btn" data-close="custom-alert-modal" style="min-width: 120px;">TAMAM</button>
+    </div>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="login-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>Giriş Yap</h3>
+      <button class="close-btn" data-close="login-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-login">
+        <div class="form-group">
+          <label>E-posta</label>
+          <input type="email" id="login-email" required />
+        </div>
+        <div class="form-group">
+          <label>Şifre</label>
+          <input type="password" id="login-password" required />
+        </div>
+        <button type="submit" class="primary-btn w-100">GİRİŞ YAP</button>
+        <p class="form-switch">Hesabın yok mu? <a href="#" id="switch-to-register">Üye Ol</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- REGISTER -->
+  <div id="register-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>Üye Ol</h3>
+      <button class="close-btn" data-close="register-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-register">
+        <div class="form-group">
+          <label>Ad Soyad</label>
+          <input type="text" id="reg-name" required />
+        </div>
+        <div class="form-group">
+          <label>E-posta</label>
+          <input type="email" id="reg-email" required />
+        </div>
+        <div class="form-group">
+          <label>Şifre</label>
+          <input type="password" id="reg-password" required />
+        </div>
+        <button type="submit" class="primary-btn w-100">ÜYE OL</button>
+        <p class="form-switch">Zaten üye misin? <a href="#" id="switch-to-login">Giriş Yap</a></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="account-panel-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3 id="account-panel-title">Hesabım</h3>
+      <button class="close-btn" data-close="account-panel-modal">&times;</button>
+    </div>
+    <div class="modal-body" id="account-panel-body"></div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div id="checkout-modal" class="modal hidden" style="max-width: 500px; max-height: 90vh; display: flex; flex-direction: column;">
+    <div class="modal-header">
+      <h3>Ödeme & Teslimat Bilgileri</h3>
+      <button class="close-btn" data-close="checkout-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="overflow-y: auto; flex: 1; padding: 20px;">
+      <form id="form-checkout">
+        <!-- Order Summary Section -->
+        <div class="checkout-section-title">📦 Sipariş Özeti</div>
+        <div id="checkout-order-summary" class="checkout-summary-box" style="margin-bottom: 20px;">
+          <!-- Dynamically populated summary -->
+        </div>
+
+        <!-- Address Section -->
+        <div class="checkout-section-title">📍 Teslimat Adresi</div>
+        <div class="form-group">
+          <label for="checkout-address-select">Kayıtlı Adresleriniz</label>
+          <select id="checkout-address-select" class="form-control" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; margin-bottom: 10px;">
+            <!-- Saved addresses options will be injected dynamically -->
+          </select>
+          <textarea id="checkout-new-address" class="form-control" rows="3" placeholder="Teslimat adresinizi giriniz..." style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; resize: none; margin-top: 10px; display: none;"></textarea>
+        </div>
+
+        <!-- Card Section -->
+        <div class="checkout-section-title">💳 Kart Bilgileri</div>
+        <div class="form-group">
+          <label for="checkout-card-name">Kart Üzerindeki İsim</label>
+          <input type="text" id="checkout-card-name" class="form-control" placeholder="Ad Soyad" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
+        </div>
+        <div class="form-group">
+          <label for="checkout-card-number">Kart Numarası</label>
+          <input type="text" id="checkout-card-number" class="form-control" maxlength="19" placeholder="0000 0000 0000 0000" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <div class="form-group" style="width: 48%;">
+            <label for="checkout-card-expiry">Son Kullanma Tarihi</label>
+            <input type="text" id="checkout-card-expiry" class="form-control" maxlength="5" placeholder="AA/YY" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
+          </div>
+          <div class="form-group" style="width: 48%;">
+            <label for="checkout-card-cvv">CVV (Güvenlik Kodu)</label>
+            <input type="password" id="checkout-card-cvv" class="form-control" maxlength="3" placeholder="000" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn w-100" style="margin-top: 15px; background: #4f167a;">
+          ÖDEMEYİ TAMAMLA & SİPARİŞ VER
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div id="cart-sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Sepetim</h3>
+      <button class="close-btn" data-close="cart-sidebar">&times;</button>
+    </div>
+    <div class="sidebar-body" id="cart-items">
+
+    </div>
+    <div class="sidebar-footer">
+      <div class="cart-total">
+        <span>Toplam:</span>
+        <strong id="cart-total-price">0.00 TL</strong>
+      </div>
+      <button class="primary-btn w-100" id="btn-checkout">ALIŞVERİŞİ TAMAMLA</button>
+    </div>
+  </div>
+
+  <!-- FAV SIDEBAR -->
+  <div id="fav-sidebar" class="sidebar hidden left-sidebar">
+    <div class="sidebar-header">
+      <h3>Favorilerim</h3>
+      <button class="close-btn" data-close="fav-sidebar">&times;</button>
+    </div>
+    <div class="sidebar-body" id="fav-items">
+      <!-- Items inject here -->
+    </div>
+  </div>
+
+  <!-- ABOUT US MODAL -->
+  <div id="about-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>Hakkımızda</h3>
+      <button class="close-btn" data-close="about-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;">
+        <strong>Parlayan Kozmetik</strong>, 2010 yılından beri Türkiye'nin lider güzellik ve kozmetik markalarından biridir. 
+        Müşteri memnuniyeti ve kalite standartlarına göre hareket eden işletmemiz, yüz binden fazla müşteriye hizmet vermektedir.
+      </p>
+      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;">
+        Biz, doğal ve güvenilir ürünleri sunarak, her müşterimizin kendini güzel ve özel hissetmesini sağlamamız için çalışıyoruz. 
+        Ürünlerimiz dermatolog tarafından test edilmiş ve onaylanmıştır.
+      </p>
+      <p style="line-height: 1.6; color: #555;">
+        Sizleri Parlayan Kozmetik ailesi içinde görmekten onur duyarız!
+      </p>
+    </div>
+  </div>
+
+  <!-- STORES MODAL -->
+  <div id="stores-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>Mağazalarımız</h3>
+      <button class="close-btn" data-close="stores-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">İstanbul - Kadıköy</h4>
+        <p style="color: #555; margin: 0;">Moda Caddesi No: 45, Kadıköy - İstanbul</p>
+        <p style="color: #999; margin: 5px 0;">Tel: +90 (216) 123-4567</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">Ankara - Çankaya</h4>
+        <p style="color: #555; margin: 0;">Atakule Plaza, B Blok No: 89, Çankaya - Ankara</p>
+        <p style="color: #999; margin: 5px 0;">Tel: +90 (312) 456-7890</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">İzmir - Alsancak</h4>
+        <p style="color: #555; margin: 0;">1453 Caddesi No: 156, Alsancak - İzmir</p>
+        <p style="color: #999; margin: 5px 0;">Tel: +90 (232) 789-0123</p>
+      </div>
+      <div>
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">Antalya - Liman</h4>
+        <p style="color: #555; margin: 0;">Liman Caddesi No: 78, Muratpaşa - Antalya</p>
+        <p style="color: #999; margin: 5px 0;">Tel: +90 (242) 234-5678</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div id="contact-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>İletişim</h3>
+      <button class="close-btn" data-close="contact-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">📞 Telefon</h4>
+        <p style="color: #555; margin: 0;">+90 (212) 555-0123 (Pazartesi-Cuma, 09:00-18:00)</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">📧 E-Mail</h4>
+        <p style="color: #555; margin: 0;">destek@parlayankozmetik.com</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">💬 Canlı Sohbet</h4>
+        <p style="color: #555; margin: 0;">Pazartesi-Cuma saat 09:00-18:00 arasında hizmetinizdeyiz.</p>
+      </div>
+      <div>
+        <h4 style="color: #C89B7B; margin-bottom: 8px;">🏢 Adres</h4>
+        <p style="color: #555; margin: 0;">Parlayan Kozmetik A.Ş.<br/>Levent Mahallesi, Büyükdere Cad. No: 100<br/>34394 Şişli/İstanbul</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPPORT MODAL -->
+  <div id="support-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>Bize Ulaşın</h3>
+      <button class="close-btn" data-close="support-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <h4 style="color: #C89B7B; margin-bottom: 15px;">Müşteri Hizmetleri</h4>
+      <p style="margin-bottom: 20px; line-height: 1.6; color: #555;">
+        Sorularınız, önerileriniz ve şikayetleriniz için bize ulaşabilirsiniz. Ekibimiz en kısa sürede sizinle iletişime geçecektir.
+      </p>
+      
+      <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
+        <h4 style="color: #333; margin-bottom: 10px;">İletişim Yolları:</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; color: #555;">
+          <li style="padding: 5px 0;">✓ Telefon: +90 (212) 555-0123</li>
+          <li style="padding: 5px 0;">✓ E-Mail: destek@parlayankozmetik.com</li>
+          <li style="padding: 5px 0;">✓ Sosyal Medya: @parlayankozmetik</li>
+          <li style="padding: 5px 0;">✓ Mağaza Ziyareti</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ MODAL -->
+  <div id="faq-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>Sıkça Sorulan Sorular</h3>
+      <button class="close-btn" data-close="faq-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px; cursor: pointer;" class="faq-toggle">▶ Ürünleriniz nasıl test edilir?</h4>
+        <p style="color: #666; margin: 0; display: none;" class="faq-content">Bütün ürünlerimiz dermatolog tarafından test edilmiş ve cilt üzerinde güvenli olduğu onaylanmıştır.</p>
+      </div>
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px; cursor: pointer;" class="faq-toggle">▶ Kargo ücreti ne kadar?</h4>
+        <p style="color: #666; margin: 0; display: none;" class="faq-content">50 TL üstü siparişlerde kargo ücretsizdir. 50 TL altı siparişlerde 9.99 TL kargo ücreti alınır.</p>
+      </div>
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px; cursor: pointer;" class="faq-toggle">▶ Teslimat süresi ne kadardır?</h4>
+        <p style="color: #666; margin: 0; display: none;" class="faq-content">İstanbul içi siparişler 1-2 gün, Türkiye'nin diğer şehirlerine 2-5 gün içinde teslim edilir.</p>
+      </div>
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px; cursor: pointer;" class="faq-toggle">▶ İade süresi kaç gündür?</h4>
+        <p style="color: #666; margin: 0; display: none;" class="faq-content">Ürünleri 14 gün içinde, hiç kullanılmamış ve orijinal ambalajında iade edebilirsiniz. Hiçbir soru sorulmaz.</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #C89B7B; margin-bottom: 8px; cursor: pointer;" class="faq-toggle">▶ Uluslararası gemi yapıyor musunuz?</h4>
+        <p style="color: #666; margin: 0; display: none;" class="faq-content">Evet, biz Avrupa ve Kuzey Amerika'ya gönderi yapıyoruz. Daha fazla bilgi için destek ekibimizle iletişime geçiniz.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RETURNS & EXCHANGE MODAL -->
+  <div id="returns-modal" class="modal hidden">
+    <div class="modal-header">
+      <h3>İade ve Değişim</h3>
+      <button class="close-btn" data-close="returns-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <h4 style="color: #C89B7B; margin-bottom: 15px;">İade Koşulları</h4>
+      <ul style="color: #555; margin-bottom: 20px; padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Ürünler hiç kullanılmamış olmalı</li>
+        <li style="margin-bottom: 8px;">Orijinal ambalajında olmalı</li>
+        <li style="margin-bottom: 8px;">Satın alma tarihi 14 gün içinde olmalı</li>
+        <li style="margin-bottom: 8px;">Fatura ve teslimat belgesi gerekli</li>
+      </ul>
+
+      <h4 style="color: #C89B7B; margin-bottom: 15px;">Değişim Süreci</h4>
+      <ol style="color: #555; margin-bottom: 20px; padding-left: 20px;">
+        <li style="margin-bottom: 8px;">Müşteri hizmetlerine iade talebinde bulunun</li>
+        <li style="margin-bottom: 8px;">Size kargo etiketi gönderilecek</li>
+        <li style="margin-bottom: 8px;">Ürünü geri gönderin</li>
+        <li style="margin-bottom: 8px;">Ürün teslim alındığında yeni ürün gönderilir</li>
+      </ol>
+
+      <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; color: #555;">
+        <strong>Not:</strong> Hatalı veya hasarlı ürünler için değişim talebiniz herhangi bir şarta tabi değildir. 
+        Müşteri hizmetleriyle iletişime geçmek yeterlidir.
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js?v=3"></script>
+</body>
+</html>
+
+
+
+

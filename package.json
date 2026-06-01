@@ -1,0 +1,24 @@
+{
+  "name": "parlayan-kozmetik",
+  "version": "1.0.0",
+  "description": "Node.js ile oluşturulmuş kozmetik vitrin sitesi",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "kozmetik",
+    "nodejs",
+    "express",
+    "e-ticaret"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mongodb": "^7.2.0",
+    "mssql": "^12.5.5",
+    "playwright": "^1.59.1"
+  }
+}

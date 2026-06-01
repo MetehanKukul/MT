@@ -1,0 +1,55 @@
+ParlayanKozmetik.com - Proje Özeti ve Dosya Açıklamaları
+
+===========================================
+PROJE HAKKINDA GENEL BİLGİ
+===========================================
+ParlayanKozmetik.com, temel amacı özellikle "Gratis" gibi kozmetik mağazalarından ürün verilerini (isim, fiyat, görsel vb.) çekmek (scraping), bu verileri bir veritabanında düzenlemek ve kullanıcılara bir web arayüzü üzerinden sunmak olan Node.js tabanlı bir web projesidir. 
+
+Proje iki ana kısımdan oluşur:
+1. Backend ve Veri İşleme (Node.js scriptleri): Ürünleri çekme, veritabanına kaydetme, görsel indirme, eksikleri giderme.
+2. Frontend (public klasörü): Kullanıcıların veritabanındaki kozmetik ürünlerini görüntülediği arayüz.
+
+===========================================
+DOSYA VE DİZİN AÇIKLAMALARI
+===========================================
+
+1. ANA SUNUCU VE AYAR DOSYALARI
+---------------------------------
+- index.js: Projenin ana backend (Express.js veya Node.js) web sunucusu dosyasıdır. Gelen istekleri karşılar ve önyüze veri iletir.
+- package.json: Projenin kullandığı npm kütüphanelerini, komutlarını ve proje yapılandırmalarını tutan temel yapılandırma dosyasıdır.
+
+2. FRONTEND (KULLANICI ARAYÜZÜ - /public Klasörü)
+---------------------------------
+- public/index.html: Web sitesinin ana HTML şablonudur. Tarayıcıda görünen yapıyı oluşturur.
+- public/styles.css: Sitenin renkleri, konumu ve tüm tasarım ayarlarının (CSS) bulunduğu dosyadır.
+- public/app.js: Sitenin istemci tarafındaki (tarayıcıda çalışan) dinamik etkileşimlerini yöneten JavaScript dosyasıdır.
+- public/images/: Sitede kullanılan statik görsellerin veya ürün resimlerinin barındırıldığı klasördür.
+
+3. WEB SCRAPING VE VERİ ÇEKME SCRİPTLERİ
+---------------------------------
+- scrape_gratis.js: Gratis'ten veya benzeri sayfalardan ürün, fiyat ve kategori verilerini otomatik çekmek için yazılmış ana kazıma (scraping) dosyasıdır.
+- get_product.js: Muhtemelen belirli bir ürünün tekil detaylarını çeken script.
+- test_gratis.js: Gratis kazıma işlemlerini ana işlemlere dahil etmeden önce test eden script.
+- gratis_out.html: Kazıma işlemi sırasında incelenmek veya test edilmek üzere indirilmiş örnek Gratis HTML çıktısı.
+
+4. GÖRSEL YÖNETİMİ SCRİPTLERİ
+---------------------------------
+- check_missing_images.js: Veritabanındaki ürünlerin fiziki olarak resimlerinin eksik olup olmadığını kontrol eder.
+- fix_missing_images.js / fix_missing_images2.js: Eksik olan resimleri tespit edip web'den tekrar indirerek onarmaya yarar.
+- sync_images.js: Görselleri veritabanı ile klasör arasında senkronize eder.
+- remove_all_images.js / verify_images.js: Tüm görselleri temizlemek veya görsellerin sağlamlığını doğrulamak için kullanılır.
+
+5. VERİTABANI VE VERİ DÜZENLEME SCRİPTLERİ
+---------------------------------
+- list_db.js: Veritabanındaki ürünleri / kayıtları listelemek veya incelemek için çalıştırılan yardımcı script.
+- test_db.js: Veritabanı bağlantı ve kayıt işlemlerini test eder.
+- clear_old_urls.js: Veritabanında artık çalışmayan veya eskimiş olan ürün linklerini veya URL'leri temizler.
+- fix_turkish.js: Çekilen verilerdeki bozuk Türkçe karakterleri düzeltmek için kullanılan metin onarım dosyası.
+- update_user.js: Kullanıcı bilgilerini güncelleme testleri veya admin işlemleri için yazılmış script.
+
+6. GEÇİCİ (TMP) VE TEST SCRİPTLERİ
+---------------------------------
+Projede "tmp_*" veya "t*.js" (örn: tmp_add_history.js, tmp_add_stars.js, tmp_patch.js, t2.js) şeklinde başlayan birçok dosya bulunmaktadır.
+Bu dosyalar, geliştiricinin (sizin) projeyi geliştirirken belirli bir denemeyi yapmak, tek seferlik bir hata çözmek, veritabanına sadece bir kere veri (örneğin yıldız puanları, tarihçe, modern arayüz yaması vb.) eklemek için oluşturduğu geçici test ve yama (patch) dosyalarıdır.
+
+Genel işleyiş olarak sistem veri toplar, resimleri ayarlar, veritabanına yazar ve index.js üzerinden "public" klasöründeki arayüze hizmet verir.
