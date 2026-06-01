@@ -789,6 +789,8 @@ function closeAllPanels() {
   document.querySelectorAll('.modal, .sidebar').forEach((panel) => panel.classList.add('hidden'));
   Elements.overlay.classList.add('hidden');
   Elements.accountDropdown.classList.add('hidden');
+  const mainNav = document.querySelector('.main-nav');
+  if (mainNav) mainNav.classList.remove('active');
 }
 
 function setupListeners() {
@@ -927,6 +929,21 @@ function setupListeners() {
       Elements.accountDropdown.classList.add('hidden');
     }
   });
+
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const mainNav = document.querySelector('.main-nav');
+      if (mainNav) {
+        mainNav.classList.toggle('active');
+        if (mainNav.classList.contains('active')) {
+          Elements.overlay.classList.remove('hidden');
+        } else {
+          closeAllPanels();
+        }
+      }
+    });
+  }
 
   const btnAccount = document.getElementById('btn-account');
   if (btnAccount) {

@@ -1868,3 +1868,142 @@ a { text-decoration: none; color: inherit; }
     padding: 24px;
   }
 }
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* --- MOBILE SPECIFIC FIXES --- */
+@media (max-width: 900px) {
+  .mobile-menu-btn {
+    display: block !important;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--primary);
+    cursor: pointer;
+  }
+  .header-container {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .logo {
+    order: 1;
+    margin: 0 auto;
+  }
+  .logo-text {
+    font-size: 24px;
+  }
+  .mobile-menu-btn {
+    order: 0;
+  }
+  .header-actions {
+    order: 2;
+  }
+  .search-bar {
+    order: 3;
+    width: 100%;
+    margin-top: 15px;
+  }
+  #account-text {
+    display: none;
+  }
+  .action-item > span:nth-child(2) {
+    display: none;
+  }
+  .action-item {
+    font-size: 24px;
+  }
+  .action-item.cart {
+    padding: 5px;
+    border: none;
+    font-size: 24px;
+    background: transparent;
+  }
+  
+  /* Hero Banner */
+  .hero-banner {
+    flex-direction: column;
+    height: auto;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .banner-content {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .banner-content h1 {
+    font-size: 36px;
+  }
+  .banner-img {
+    max-height: 250px;
+  }
+  .floating-luxury-badge {
+    width: 70px;
+    height: 70px;
+    bottom: 10px;
+    left: 10px;
+  }
+  .badge-num { font-size: 16px; }
+
+  /* Product Grid */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .product-card {
+    padding: 10px;
+  }
+  .product-image {
+    height: 150px;
+  }
+  .product-name {
+    font-size: 13px;
+    height: 36px;
+  }
+
+  /* Nav menu */
+  .main-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    flex-direction: column;
+    transition: left 0.3s;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+  .main-nav.active {
+    display: flex;
+    left: 0;
+  }
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  .nav-item {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 15px 10px !important;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
