@@ -1,16 +1,24 @@
 /* ==========================================================================
+   🔥🔥 HOCANIZ RENKLERİ DEĞİŞTİR DERSE BURAYA BAKACAKSINIZ 🔥🔥
    1. GLOBAL TEMA DEĞİŞKENLERİ (CSS VARIABLES)
-   Sitenin renk paleti, gölgeleri ve arka planları buradan tek merkezden yönetilir.
+   Sitenin ana renk paleti, gölgeleri ve arka planları buradan yönetilir.
    ========================================================================== */
 :root {
-  --primary: #212121;      /* Sitenin ana rengidir (Menü arka planı, ana butonlar vb.) */
-  --secondary: #C89B7B;    /* İkinci vurgu rengidir (Marka isimleri, Sepete At butonları, altın tonu) */
-  --text: #333333;         /* Standart metin ve okuma rengi */
-  --text-light: #666666;   /* İkincil hafif metin rengi (Açıklamalar, adet bilgisi vb.) */
-  --bg-color: #FDFDFD;     /* Sitenin genel arka plan rengi */
-  --border-color: #EAEAEA; /* İnce çizgi ve çerçeve kenarlıklarının rengi */
-  --discount-red: #B54242; /* İndirim etiketleri ve silme/çıkarma butonlarının rengi */
-  --shadow-lux: 0 10px 30px rgba(0,0,0,0.08); /* Kartlara verilen yumuşak lüks gölge efekti */
+  /* HOCA: Siyah yerine kırmızı yap derse bunu değiştir: */
+  --primary: #212121;      /* Sitenin ana rengidir (Menü arka planı, butonlar vb.) */
+  
+  /* HOCA: Altın/Pembe rengi mavi yap derse bunu değiştir: */
+  --secondary: #C89B7B;    /* İkinci vurgu rengidir (Logo, Sepete At butonları) */
+  
+  --text: #333333;         /* Standart yazın rengi */
+  --text-light: #666666;   /* Açıklama yazıları rengi */
+  --bg-color: #FDFDFD;     /* Sayfanın genel arka plan rengi */
+  --border-color: #EAEAEA; /* Çizgi ve çerçeve kenarlıklarının rengi */
+  
+  /* HOCA: İndirim rengini değiştir derse bunu değiştir: */
+  --discount-red: #B54242; /* İndirim etiketleri ve silme butonlarının rengi */
+  
+  --shadow-lux: 0 10px 30px rgba(0,0,0,0.08); /* Kart gölgeleri */
 }
 
 /* ==========================================================================
@@ -81,7 +89,7 @@ a {
 .nav-item.highlight { background-color: var(--discount-red); }
 .main-content { padding: 30px 15px; min-height: 50vh; }
 .hero-banner { 
-  background: linear-gradient(-45deg, #f5eefc, #fae8f0, #e9d5ff, #ffffff);
+  background: linear-gradient(-45deg, #FAF6F2, #F5ECE5, #FDFBF8, #ffffff);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite, fadeInUpBanner 1s ease backwards;
   border-radius: 24px;
@@ -91,7 +99,7 @@ a {
   align-items: center;
   padding: 40px 60px;
   margin-bottom: 40px;
-  box-shadow: 0 15px 35px rgba(79, 22, 122, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
   position: relative;
   overflow: hidden;
 }
@@ -101,9 +109,9 @@ a {
 .banner-badge {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(79, 22, 122, 0.06);
-  border: 1px solid rgba(79, 22, 122, 0.15);
-  color: #4f167a;
+  background: rgba(181, 66, 66, 0.08);
+  border: 1px solid rgba(181, 66, 66, 0.15);
+  color: var(--discount-red);
   border-radius: 30px;
   font-size: 11px;
   font-weight: 700;
@@ -123,7 +131,7 @@ a {
 .banner-content h1 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 56px;
-  color: #4f167a;
+  color: var(--primary);
   margin-bottom: 15px;
   letter-spacing: -1.5px;
   line-height: 1.1;
@@ -131,14 +139,14 @@ a {
 }
 .banner-content p {
   font-size: 15px;
-  color: #555860;
+  color: var(--text-light);
   margin-bottom: 35px;
   font-weight: 400;
   max-width: 480px;
   line-height: 1.6;
 }
 .banner-btn {
-  background-color: #4f167a;
+  background-color: var(--discount-red);
   color: white;
   border: none;
   padding: 16px 36px;
@@ -149,14 +157,14 @@ a {
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(79, 22, 122, 0.25);
+  box-shadow: 0 6px 20px rgba(181, 66, 66, 0.25);
   display: inline-flex;
   align-items: center;
 }
 .banner-btn:hover {
-  background-color: #a46dbb;
+  background-color: #9c3636;
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(164, 109, 187, 0.35);
+  box-shadow: 0 10px 25px rgba(156, 54, 54, 0.35);
 }
 
 .banner-visual {
@@ -1573,20 +1581,20 @@ a {
 /* Checkout Flow Modern Premium Styles */
 .checkout-section-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  color: #4f167a;
-  margin: 20px 0 10px 0;
+  color: var(--primary);
+  margin: 22px 0 12px 0;
   padding-left: 10px;
-  border-left: 3px solid #4f167a;
+  border-left: 3px solid var(--secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   text-align: left;
 }
 .checkout-summary-box {
-  background-color: #fdfafe;
-  border: 1px solid rgba(79, 22, 122, 0.08);
-  border-radius: 10px;
+  background-color: #FAF6F2;
+  border: 1px solid rgba(200, 155, 123, 0.15);
+  border-radius: 12px;
   padding: 15px 20px;
 }
 .checkout-summary-row {
@@ -1594,7 +1602,7 @@ a {
   justify-content: space-between;
   align-items: center;
   font-size: 13px;
-  color: #666;
+  color: #555;
   margin-bottom: 8px;
 }
 .checkout-summary-row:last-child {
@@ -1603,14 +1611,15 @@ a {
 .checkout-summary-row.total-row {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid rgba(79, 22, 122, 0.1);
-  font-size: 16px;
-  color: #4f167a;
+  border-top: 1px solid rgba(200, 155, 123, 0.2);
+  font-size: 15px;
+  color: var(--primary);
   font-weight: 700;
 }
 .checkout-summary-row.total-row strong {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
+  color: var(--secondary);
 }
 #form-checkout .form-group {
   margin-bottom: 15px;
@@ -1618,18 +1627,35 @@ a {
 }
 #form-checkout .form-group label {
   font-size: 12px;
-  color: #555;
+  color: #666;
   margin-bottom: 6px;
   font-weight: 600;
   display: block;
 }
 #form-checkout .form-control {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  background: #FFF;
   transition: all 0.3s ease;
 }
 #form-checkout .form-control:focus {
-  border-color: #4f167a;
-  box-shadow: 0 0 8px rgba(79, 22, 122, 0.15);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(200, 155, 123, 0.15);
+}
+.shipping-card {
+  transition: all 0.2s ease-in-out;
+}
+.shipping-card:hover {
+  border-color: var(--secondary) !important;
+  transform: translateY(-1px);
+}
+.virtual-card {
+  transition: all 0.3s ease;
+}
+.virtual-card:hover {
+  transform: translateY(-2px) scale(1.01);
 }
 
 /* Promo Campaigns Section Styles */

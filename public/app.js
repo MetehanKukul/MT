@@ -1,3 +1,9 @@
+/* ==========================================================================
+   🧠 SİTENİN BEYNİ: app.js
+   Hocanız "Ürünler nereden geliyor?", "Sepete nasıl ürün ekleniyor?" derse
+   bu dosyanın içindeki işlemleri referans gösterebilirsiniz.
+   Buradaki değişkenler sitenin verilerini hafızada tutar.
+   ========================================================================== */
 // State Configuration
 let allProducts = [];
 let allCategories = [];
@@ -34,14 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
       allProducts = data;
       renderProducts(allProducts.slice(0, 6));
       updateUI();
-      
+
       // Check if URL has a product hash on load
       const hash = window.location.hash;
       if (hash && hash.startsWith('#product-')) {
         const pId = hash.replace('#product-', '');
         if (pId) {
           // Replace current state so we know we start at a product
-          history.replaceState({view: 'pdp', productId: pId}, '', hash);
+          history.replaceState({ view: 'pdp', productId: pId }, '', hash);
           renderProductDetailSilent(pId);
         }
       }
@@ -61,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const footerCategories = document.getElementById('footer-categories');
       const navLinks = document.getElementById('nav-links');
-      
+
       if (footerCategories) {
         footerCategories.innerHTML = categories.map(c => `
           <li>${escapeHtml(c.name)}</li>
@@ -71,16 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navLinks) {
         // Sadece başlıkta görünmesini istediğimiz ana kategorileri filtreleyelim
         const anaKategoriler = [
-          'Makyaj', 'Hijyen & Bakım', 'Kişisel Bakım', 'Duş & Banyo', 
-          'Cilt Bakımı', 'Saç Bakımı', 'Parfüm & Deodorant', 'Erkek Bakım', 
+          'Makyaj', 'Hijyen & Bakım', 'Kişisel Bakım', 'Duş & Banyo',
+          'Cilt Bakımı', 'Saç Bakımı', 'Parfüm & Deodorant', 'Erkek Bakım',
           'Güneş Ürünleri'
         ];
-        
+
         const filteredCategories = categories.filter(c => anaKategoriler.includes(c.name)).sort((a, b) => anaKategoriler.indexOf(a.name) - anaKategoriler.indexOf(b.name));
-        
+
         navLinks.innerHTML = filteredCategories.map(c => {
           let megaMenuHTML = '';
-          
+
           if (c.name === 'Makyaj') {
             megaMenuHTML = `
               <div class="mega-menu">
@@ -258,18 +264,18 @@ function customAlert(message, title = 'Bilgi') {
 function normalizeCategoryName(name) {
   if (!name) return '';
   let normalized = name.toLowerCase()
-                       .replace(/&amp;/g, 've')
-                       .replace(/&/g, 've')
-                       .replace(/ğ/g, 'g')
-                       .replace(/ü/g, 'u')
-                       .replace(/ş/g, 's')
-                       .replace(/ı/g, 'i')
-                       .replace(/ö/g, 'o')
-                       .replace(/ç/g, 'c')
-                       .trim();
-  
+    .replace(/&amp;/g, 've')
+    .replace(/&/g, 've')
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ı/g, 'i')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c')
+    .trim();
+
   normalized = normalized.replace(/cilt bakimi/g, 'cilt bakim')
-                         .replace(/sac bakimi/g, 'sac bakim');
+    .replace(/sac bakimi/g, 'sac bakim');
   return normalized;
 }
 
@@ -324,7 +330,7 @@ function updateUI() {
   Elements.favBadge.textContent = favorites.length;
   Elements.favBadge.classList.toggle('hidden', favorites.length === 0);
 
-  
+
   document.querySelectorAll('.pdp-fav-action-btn').forEach((btn) => {
     const id = btn.dataset.id;
     if (favorites.some(f => String(f) === String(id))) {
@@ -370,6 +376,11 @@ function getProductImageUrl(url) {
   return isValidProductImage(url) ? url : DEFAULT_PRODUCT_IMAGE;
 }
 
+// ==========================================
+// 📦 ÜRÜNLERİ EKRANA ÇİZDİRME FONKSİYONU (renderProducts)
+// Hoca "Ürünleri nereden ekrana basıyorsun?" diye sorarsa bu fonksiyonu gösterin.
+// Bu fonksiyon, gelen ürün listesini (items) alır ve HTML kartlarına dönüştürerek ekrana basar.
+// ==========================================
 function renderProducts(items) {
   if (!items.length) {
     Elements.grid.innerHTML = '<p style="text-align:center;padding:40px; grid-column:span 4">Bu kategoride ürün bulunamadı.</p>';
@@ -496,15 +507,15 @@ function showOrdersPanel() {
 function showAddressesPanel() {
   const listHtml = addresses.length
     ? addresses
-        .map(
-          (address, index) => `
+      .map(
+        (address, index) => `
         <div class="account-panel-card">
           <div>${escapeHtml(address)}</div>
           <button class="mini-item-remove" style="position: static; margin-top: 8px;" data-account-panel-action="remove-address" data-address-index="${index}">Sil</button>
         </div>
       `,
-        )
-        .join('')
+      )
+      .join('')
     : '<div class="account-panel-card">Kayıtlı adresiniz bulunmuyor.</div>';
 
   openAccountPanel(
@@ -605,9 +616,9 @@ function showCardPanel() {
   openAccountPanel('Parlayan Kartım', html);
 }
 
-window.toggleFaq = function(element) {
+window.toggleFaq = function (element) {
   const isActive = element.classList.contains('active');
-  
+
   // Tüm diğer açık sıkça sorulan soruları kapat (Accordion etkisi)
   const allItems = document.querySelectorAll('.faq-item');
   allItems.forEach(item => {
@@ -615,7 +626,7 @@ window.toggleFaq = function(element) {
     const ic = item.querySelector('.faq-icon');
     if (ic) ic.textContent = '+';
   });
-  
+
   // Eğer tıklanan soru aktif değilse aç
   if (!isActive) {
     element.classList.add('active');
@@ -637,8 +648,8 @@ function showSettingsPanel() {
   const name = currentUser && currentUser.name ? escapeHtml(currentUser.name) : '';
   const email = currentUser && currentUser.email ? escapeHtml(currentUser.email) : '';
   const phone = currentUser && currentUser.phone ? currentUser.phone : '';
-  const regDate = currentUser && currentUser.registrationDate && currentUser.registrationDate !== '-' 
-    ? escapeHtml(new Date(currentUser.registrationDate).toLocaleDateString('tr-TR')) 
+  const regDate = currentUser && currentUser.registrationDate && currentUser.registrationDate !== '-'
+    ? escapeHtml(new Date(currentUser.registrationDate).toLocaleDateString('tr-TR'))
     : 'Bilinmiyor';
 
   const html = `
@@ -687,7 +698,7 @@ function showSettingsPanel() {
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Form değerlerini okuyalım
         const newName = document.getElementById('settings-name').value.trim();
         const newEmail = document.getElementById('settings-email').value.trim();
@@ -702,27 +713,27 @@ function showSettingsPanel() {
           // LocalStorage'ı ve UI'ı güncelle
           saveState();
           updateUI();
-          
+
           // API request to trigger backend SQL UPDATE
           fetch('/api/users/update', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                  id: currentUser.id,
-                  name: currentUser.name,
-                  email: currentUser.email,
-                  phone: currentUser.phone,
-                  password: newPassword
-              })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: currentUser.id,
+              name: currentUser.name,
+              email: currentUser.email,
+              phone: currentUser.phone,
+              password: newPassword
+            })
           }).then(res => res.json()).then(data => {
-              if (data.success) {
-                  showToast('Bilgileriniz başarıyla güncellendi!');
-              } else {
-                  showToast('Hata: ' + data.message);
-              }
+            if (data.success) {
+              showToast('Bilgileriniz başarıyla güncellendi!');
+            } else {
+              showToast('Hata: ' + data.message);
+            }
           }).catch(err => {
-              console.error(err);
-              showToast('Sunucu bağlantı hatası oluştu!');
+            console.error(err);
+            showToast('Sunucu bağlantı hatası oluştu!');
           });
         } else {
           customAlert('Lütfen önce giriş yapın.');
@@ -791,6 +802,11 @@ function handleAccountAction(action) {
   }
 }
 
+// ==========================================
+// 🛒 SEPETE EKLEME FONKSİYONU (addToCart)
+// Hoca "Sepete ekleme işlemi nasıl çalışıyor?" diye sorarsa bu kısmı gösterin.
+// Kullanıcı butona basınca ürün ID'sini alıp `cart` adlı sepete atıyor.
+// ==========================================
 window.addToCart = function (id) {
   const strId = String(id);
   const existing = cart.find((item) => String(item.id) === strId);
@@ -909,7 +925,7 @@ function setupListeners() {
       }, 1200);
     }
 
-    
+
     if (event.target.classList.contains('pdp-fav-action-btn')) {
       const id = event.target.dataset.id;
       toggleFav(id);
@@ -931,14 +947,14 @@ function setupListeners() {
       const cat = event.target.dataset.cat;
       const catId = String(event.target.dataset.id);
       const normalizedCat = normalizeCategoryName(cat);
-      
+
       document.getElementById('pdp-view').style.display = 'none';
       document.getElementById('home-view').style.display = 'block';
       document.getElementById('pdp-view').style.display = 'none';
       document.getElementById('home-view').style.display = 'block';
       Elements.homeBanner.style.display = 'none';
       Elements.homeBrands.style.display = 'none';
-      
+
       document.querySelectorAll('.nav-item').forEach((item) => {
         item.style.opacity = '1';
       });
@@ -954,13 +970,13 @@ function setupListeners() {
         }
         return p.category === cat;
       });
-      
+
       renderProducts(filtered);
-      
+
       if (Elements.productsHeading) {
         Elements.productsHeading.textContent = `★ ${cat} Ürünleri`;
       }
-      
+
       if (Elements.grid) {
         Elements.grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -972,11 +988,11 @@ function setupListeners() {
       // Alt kategorilere göre de filtreleme yapmak için
       const filtered = allProducts.filter(p => p.category === subCat || p.name.includes(subCat));
       renderProducts(filtered);
-      
+
       if (Elements.productsHeading) {
         Elements.productsHeading.textContent = `★ ${subCat} Ürünleri`;
       }
-      
+
       if (Elements.grid) {
         Elements.grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -1064,8 +1080,8 @@ function setupListeners() {
         return;
       }
 
-      if (!cart.length) {
-        customAlert('Sepetiniz boş.');
+      if (!cart || cart.length === 0 || calculateCartTotal(cart) <= 0) {
+        customAlert('Sepetiniz boş. Lütfen ödeme yapabilmek için sepetinize ürün ekleyin.', 'Sepet Boş');
         return;
       }
 
@@ -1078,7 +1094,7 @@ function setupListeners() {
       const kargo = subtotal >= 750 ? 0 : 29.99;
       const total = subtotal + kargo;
       const kargoText = kargo === 0 ? 'Bedava' : formatPrice(kargo);
-      
+
       const summaryElem = document.getElementById('checkout-order-summary');
       if (summaryElem) {
         summaryElem.innerHTML = `
@@ -1131,8 +1147,9 @@ function setupListeners() {
     });
   }
 
-  // Card expiration mask format (MM/YY)
+  // Card expiration mask format (MM/YY) & preview update
   const cardExpiry = document.getElementById('checkout-card-expiry');
+  const previewExpiry = document.getElementById('card-preview-expiry');
   if (cardExpiry) {
     cardExpiry.addEventListener('input', (e) => {
       let val = e.target.value.replace(/\D/g, ''); // strip non-digits
@@ -1142,21 +1159,55 @@ function setupListeners() {
       } else {
         e.target.value = val;
       }
+      if (previewExpiry) {
+        previewExpiry.textContent = e.target.value || 'AA/YY';
+      }
     });
   }
 
-  // Credit card number spacing format (XXXX XXXX XXXX XXXX)
+  // Credit card number spacing format & brand detection & preview update
   const cardNumber = document.getElementById('checkout-card-number');
+  const previewNumber = document.getElementById('card-preview-number');
+  const previewBrand = document.getElementById('card-preview-brand');
   if (cardNumber) {
     cardNumber.addEventListener('input', (e) => {
       let val = e.target.value.replace(/\D/g, ''); // strip non-digits
       if (val.length > 16) val = val.slice(0, 16);
+
+      // Update preview card network brand dynamically
+      if (previewBrand) {
+        if (val.startsWith('4')) {
+          previewBrand.textContent = 'VISA';
+        } else if (val.startsWith('5')) {
+          previewBrand.textContent = 'MASTERCARD';
+        } else if (val.startsWith('9')) {
+          previewBrand.textContent = 'TROY';
+        } else if (val.startsWith('3')) {
+          previewBrand.textContent = 'AMEX';
+        } else {
+          previewBrand.textContent = 'KART';
+        }
+      }
+
       const matches = val.match(/\d{1,4}/g);
       if (matches) {
         e.target.value = matches.join(' ');
       } else {
         e.target.value = val;
       }
+
+      if (previewNumber) {
+        previewNumber.textContent = e.target.value || '•••• •••• •••• ••••';
+      }
+    });
+  }
+
+  // Card Holder Name preview update
+  const cardName = document.getElementById('checkout-card-name');
+  const previewName = document.getElementById('card-preview-name');
+  if (cardName && previewName) {
+    cardName.addEventListener('input', (e) => {
+      previewName.textContent = e.target.value.toUpperCase() || 'AD SOYAD';
     });
   }
 
@@ -1165,6 +1216,25 @@ function setupListeners() {
   if (cardCvv) {
     cardCvv.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/\D/g, '').slice(0, 3);
+    });
+  }
+
+  // Shipping Carrier Cards selection listener
+  const shippingCards = document.querySelectorAll('.shipping-card');
+  if (shippingCards.length > 0) {
+    shippingCards.forEach(card => {
+      card.addEventListener('click', () => {
+        shippingCards.forEach(c => {
+          c.classList.remove('active');
+          c.style.borderColor = 'var(--border-color)';
+          c.style.background = '#FFF';
+        });
+        card.classList.add('active');
+        card.style.borderColor = 'var(--secondary)';
+        card.style.background = '#FAF6F2';
+        const radio = card.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      });
     });
   }
 
@@ -1217,7 +1287,7 @@ function setupListeners() {
       const kargo = subtotal >= 750 ? 0 : 29.99;
       const orderTotal = subtotal + kargo;
       const orderItems = cart.map((item) => ({ id: item.id, qty: item.qty }));
-      
+
       const newOrder = {
         id: `SIP-${Date.now().toString().slice(-6)}`,
         date: new Date().toLocaleString('tr-TR'),
@@ -1242,21 +1312,21 @@ function setupListeners() {
       event.preventDefault();
       const email = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value.trim();
-      
+
       try {
         const response = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
         });
-        
+
         const data = await response.json();
-        
+
         if (data.success) {
           // Backend'den gelen kullanıcı bilgilerini kaydediyoruz (Ad ve Soyad sütunlarını birleştirerek)
-          currentUser = { 
+          currentUser = {
             id: data.user.id,
-            name: (data.user.Ad + ' ' + data.user.Soyad).trim(), 
+            name: (data.user.Ad + ' ' + data.user.Soyad).trim(),
             email: data.user.Eposta,
             phone: data.user.Telefon || '',
             registrationDate: data.user.KayitTarihi || '-'
@@ -1280,25 +1350,25 @@ function setupListeners() {
   if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      
+
       const fullName = document.getElementById('reg-name').value.trim();
       const email = document.getElementById('reg-email').value.trim();
       const password = document.getElementById('reg-password').value.trim();
-      
+
       // Ad ve soyadı boşluktan ayırıyoruz ("Sümeyye Meryem Akdaş" => Ad: "Sümeyye Meryem", Soyad: "Akdaş")
       const nameParts = fullName.split(' ');
       const soyad = nameParts.length > 1 ? nameParts.pop() : ''; // Son kelime soyad
       const ad = nameParts.join(' '); // Kalanlar ad
-      
+
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ad, soyad, email, password })
         });
-        
+
         const data = await response.json();
-        
+
         if (data.success) {
           customAlert('Başarıyla kayıt oldunuz! Lütfen şimdi giriş yapın.');
           closeModal('register-modal');
@@ -1338,16 +1408,16 @@ function setupListeners() {
   function performSearch() {
     if (!searchInput) return;
     const term = searchInput.value.toLowerCase().trim();
-    
+
     Elements.homeBanner.style.display = term ? 'none' : 'flex';
     Elements.homeBrands.style.display = term ? 'none' : 'flex';
-    
+
     const filtered = allProducts.filter(
       (product) => product.name.toLowerCase().includes(term) || (product.brand && product.brand.toLowerCase().includes(term)),
     );
     renderProducts(filtered);
     Elements.productsHeading.textContent = term ? `"${term}" için Arama Sonuçları` : '★ Haftanın Yıldızları';
-    
+
     if (term && Elements.grid) {
       Elements.grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -1396,8 +1466,8 @@ function setupListeners() {
 
         const megaMenu = targetLink.closest('.mega-menu');
         if (megaMenu) {
-            megaMenu.style.display = 'none';
-            setTimeout(() => megaMenu.style.display = '', 200);
+          megaMenu.style.display = 'none';
+          setTimeout(() => megaMenu.style.display = '', 200);
         }
       }
     });
@@ -1407,7 +1477,7 @@ function setupListeners() {
   if (goShopping) {
     goShopping.addEventListener('click', (event) => {
       event.preventDefault();
-      
+
       const grid = document.getElementById('product-grid');
       // İndirimli ürünleri (badge: %50 vs.) filtrele ve en başa getir. 
       // Veya direkt o kısma scoll yaparak göze çarpan ilk ürünlere odaklansın
@@ -1493,23 +1563,23 @@ function setupListeners() {
 }
 
 // -- Intersection Observer for scroll animations --
-  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-  const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-        entry.target.classList.add('visible');
-        scrollObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('section, .brands-section, .main-footer').forEach(el => {
-    if (!el.classList.contains('hero-banner')) {
-      el.classList.add('animate-on-scroll');
-      scrollObserver.observe(el);
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      entry.target.classList.add('visible');
+      scrollObserver.unobserve(entry.target);
     }
   });
+}, observerOptions);
+
+document.querySelectorAll('section, .brands-section, .main-footer').forEach(el => {
+  if (!el.classList.contains('hero-banner')) {
+    el.classList.add('animate-on-scroll');
+    scrollObserver.observe(el);
+  }
+});
 
 
 
@@ -1517,7 +1587,7 @@ function setupListeners() {
 window.addEventListener('popstate', (event) => {
   const pdpView = document.getElementById('pdp-view');
   const homeView = document.getElementById('home-view');
-  
+
   if (event.state && event.state.view === 'pdp' && event.state.productId) {
     renderProductDetailSilent(event.state.productId);
   } else {
@@ -1530,19 +1600,19 @@ window.addEventListener('popstate', (event) => {
 });
 
 function closePdpUI() {
-  document.getElementById('pdp-view').style.display='none'; 
-  document.getElementById('home-view').style.display='block';
+  document.getElementById('pdp-view').style.display = 'none';
+  document.getElementById('home-view').style.display = 'block';
   history.pushState(null, '', window.location.pathname + window.location.search);
 }
 
 function renderProductDetailSilent(productId) {
   const product = allProducts.find(p => String(p.id) === String(productId));
   if (!product) return;
-  
+
   const pdpView = document.getElementById('pdp-view');
   const homeView = document.getElementById('home-view');
-  
-  const breadcrumbText = 
+
+  const breadcrumbText =
     '<a href="#" onclick="closePdpUI(); return false;">Anasayfa</a>' +
     '<span>&gt;</span>' +
     '<span>' + (product.mainCategory || 'Kategori') + '</span>' +
@@ -1550,7 +1620,7 @@ function renderProductDetailSilent(productId) {
     '<span>' + (product.category || '') + '</span>' +
     '<span>&gt;</span>' +
     '<b>' + (product.brand || '') + ' ' + (product.name) + '</b>';
-  
+
   const imgUrl = getProductImageUrl(product.image);
 
   // 1. Ürün açıklaması cümlelere ayrılıp listeye çevrilir
@@ -1678,51 +1748,51 @@ function renderProductDetailSilent(productId) {
     </div>
   `;
 
-  pdpView.innerHTML = 
+  pdpView.innerHTML =
     '<div class="container pdp-breadcrumb" id="pdp-breadcrumb">' +
-      breadcrumbText +
+    breadcrumbText +
     '</div>' +
     '<div class="container pdp-container">' +
-      '<div class="pdp-left">' +
-        '<div class="pdp-thumbnails">' +
-          '<img src="' + imgUrl + '" class="pdp-thumb" alt="thumb1" />' +
-          '<img src="' + imgUrl + '" class="pdp-thumb" alt="thumb2" />' +
-        '</div>' +
-        '<div class="pdp-main-image-box">' +
-          '<span class="pdp-badge">Parlayan\'a Özel</span>' +
-          '<img src="' + imgUrl + '" class="pdp-main-image" />' +
-          '<div class="pdp-image-actions">' +
-            '<button title="Paylaş">📤</button>' +
-            '<button class="fav-btn" data-id="' + product.id + '" title="Favorilere Ekle">♡</button>' +
-          '</div>' +
-          '<button style="position: absolute; bottom: 15px; right: 15px; background: none; border: none; font-size: 20px; color: #4f167a; cursor: pointer;">🔍</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="pdp-right">' +
-        '<div class="pdp-brand-and-fav">' +
-          '<span class="pdp-brand">' + (product.brand || 'Marka') + '</span>' +
-          '<span class="pdp-fav-info">💜 41,6B+ Kişi Favoriledi!</span>' +
-        '</div>' +
-        '<h1 class="pdp-title">' + product.name + '</h1>' +
-        '<div class="pdp-rating">' +
-          '<span class="pdp-rating-stars">★★★★☆</span>' +
-          '<span>(4.2)</span>' +
-          '<span>403 Değerlendirme</span>' +
-          '<a href="#" class="pdp-reviews-link">Tüm Yorumları Görüntüle</a>' +
-        '</div>' +
-        '<div class="pdp-price-area">' +
-          (product.oldPrice ? '<div class="pdp-old-price">' + product.oldPrice + '</div>' : '') +
-          '<div class="pdp-card-label">Parlayan Kart ile</div>' +
-          '<div class="pdp-new-price">' + product.price + '</div>' +
-        '</div>' +
-        '<div class="pdp-actions">' +
-          '<button class="btn-buy-now pdp-fav-action-btn" data-id="' + product.id + '">FAVORİLERE EKLE</button>' +
-          '<button class="btn-add-to-cart add-to-cart" data-id="' + product.id + '">SEPETE EKLE</button>' +
-        '</div>' +
-      '</div>' +
+    '<div class="pdp-left">' +
+    '<div class="pdp-thumbnails">' +
+    '<img src="' + imgUrl + '" class="pdp-thumb" alt="thumb1" />' +
+    '<img src="' + imgUrl + '" class="pdp-thumb" alt="thumb2" />' +
+    '</div>' +
+    '<div class="pdp-main-image-box">' +
+    '<span class="pdp-badge">Parlayan\'a Özel</span>' +
+    '<img src="' + imgUrl + '" class="pdp-main-image" />' +
+    '<div class="pdp-image-actions">' +
+    '<button title="Paylaş">📤</button>' +
+    '<button class="fav-btn" data-id="' + product.id + '" title="Favorilere Ekle">♡</button>' +
+    '</div>' +
+    '<button style="position: absolute; bottom: 15px; right: 15px; background: none; border: none; font-size: 20px; color: #4f167a; cursor: pointer;">🔍</button>' +
+    '</div>' +
+    '</div>' +
+    '<div class="pdp-right">' +
+    '<div class="pdp-brand-and-fav">' +
+    '<span class="pdp-brand">' + (product.brand || 'Marka') + '</span>' +
+    '<span class="pdp-fav-info">💜 41,6B+ Kişi Favoriledi!</span>' +
+    '</div>' +
+    '<h1 class="pdp-title">' + product.name + '</h1>' +
+    '<div class="pdp-rating">' +
+    '<span class="pdp-rating-stars">★★★★☆</span>' +
+    '<span>(4.2)</span>' +
+    '<span>403 Değerlendirme</span>' +
+    '<a href="#" class="pdp-reviews-link">Tüm Yorumları Görüntüle</a>' +
+    '</div>' +
+    '<div class="pdp-price-area">' +
+    (product.oldPrice ? '<div class="pdp-old-price">' + product.oldPrice + '</div>' : '') +
+    '<div class="pdp-card-label">Parlayan Kart ile</div>' +
+    '<div class="pdp-new-price">' + product.price + '</div>' +
+    '</div>' +
+    '<div class="pdp-actions">' +
+    '<button class="btn-buy-now pdp-fav-action-btn" data-id="' + product.id + '">FAVORİLERE EKLE</button>' +
+    '<button class="btn-add-to-cart add-to-cart" data-id="' + product.id + '">SEPETE EKLE</button>' +
+    '</div>' +
+    '</div>' +
     '</div>' +
     tabsHTML;
-  
+
   homeView.style.display = 'none';
   pdpView.style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1731,7 +1801,7 @@ function renderProductDetailSilent(productId) {
 
 function showProductDetail(productId) {
   if (!history.state || history.state.view !== 'pdp' || history.state.productId !== productId) {
-    history.pushState({view: 'pdp', productId: productId}, '', '#product-' + productId);
+    history.pushState({ view: 'pdp', productId: productId }, '', '#product-' + productId);
   }
   renderProductDetailSilent(productId);
 }
@@ -1748,10 +1818,10 @@ function showToast(message) {
   toast.className = 'toast';
   toast.innerHTML = '✨ ' + message;
   container.appendChild(toast);
-  
+
   // animate in
   setTimeout(() => toast.classList.add('show'), 10);
-  
+
   // animate out
   setTimeout(() => {
     toast.classList.remove('show');

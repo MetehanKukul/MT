@@ -20,6 +20,9 @@
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- 🖥️ BURASI ÜST MENÜ (HEADER) BÖLÜMÜ - LOGO VE ARAMA BURADA -->
+  <!-- ========================================== -->
   <header class="main-header">
     <div class="container header-container">
       <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="ph ph-list"></i></button>
@@ -75,6 +78,10 @@
 
   <main class="container main-content" id="main-content-area">
     <div id="home-view">
+      <!-- ========================================== -->
+      <!-- 🎨 BURASI BÜYÜK RESİMLİ KAMPANYA ALANI (HERO BANNER) -->
+      <!-- "Işıltınızı Keşfedin" yazısı burada -->
+      <!-- ========================================== -->
       <section class="hero-banner" id="home-banner">
         <div class="banner-content">
           <span class="banner-badge">💎 BAHAR KAMPANYASI</span>
@@ -83,7 +90,7 @@
           <button class="banner-btn" id="go-shopping">ALIŞVERİŞE BAŞLA &nbsp;➔</button>
         </div>
         <div class="banner-visual">
-          <img src="/images/hero_banner_cosmetics.png" alt="Luxury Cosmetics Banner" class="banner-img" />
+          <img src="https://api.gratis.retter.io/1oakekr4e/CALL/Image/get/dPEIbU6AmL_1024x1024.png" alt="Beaulis Beauty Banner" class="banner-img" onerror="this.onerror=null;this.src='/images/hero_banner_cosmetics.png';" />
           <div class="floating-luxury-badge">
             <span class="badge-num">%50</span>
             <span class="badge-lbl">İndirim</span>
@@ -92,6 +99,9 @@
       </section>
 
       <!-- KAMPANYALAR VE ÖZEL FIRSATLAR -->
+      <!-- ========================================== -->
+      <!-- 🛍️ BURASI ORTADAKİ KAMPANYALAR (SARI VE MOR KARTLAR) BÖLÜMÜ -->
+      <!-- ========================================== -->
       <section class="section promo-campaigns-section">
         <div class="section-title">
           <h2>★ Kampanyalar & Özel Fırsatlar</h2>
@@ -293,6 +303,9 @@
     <div id="pdp-view" style="display:none; padding-top:20px; padding-bottom: 40px;"></div>
   </main>
 
+  <!-- ========================================== -->
+  <!-- ⬇️ BURASI SİTENİN EN ALT KISMI (FOOTER) BÖLÜMÜ -->
+  <!-- ========================================== -->
   <footer class="main-footer">
     <div class="container footer-grid">
       <!-- removed Kategoriler from footer to match what user said -->
@@ -391,57 +404,118 @@
   </div>
 
   <!-- CHECKOUT MODAL -->
-  <div id="checkout-modal" class="modal hidden" style="max-width: 500px; max-height: 90vh; display: flex; flex-direction: column;">
-    <div class="modal-header">
-      <h3>Ödeme & Teslimat Bilgileri</h3>
-      <button class="close-btn" data-close="checkout-modal">&times;</button>
+  <div id="checkout-modal" class="modal hidden" style="max-width: 520px; max-height: 90vh; display: flex; flex-direction: column; border-radius: 16px; border: none; box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+    <div class="modal-header" style="padding: 20px 24px; border-bottom: 1px solid var(--border-color); background: #FAF6F2;">
+      <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: #212121; font-size: 18px;">Ödeme & Teslimat Bilgileri</h3>
+      <button class="close-btn" data-close="checkout-modal" style="font-size: 24px;">&times;</button>
     </div>
-    <div class="modal-body" style="overflow-y: auto; flex: 1; padding: 20px;">
+    <div class="modal-body" style="overflow-y: auto; flex: 1; padding: 24px; background: #FFF;">
       <form id="form-checkout">
         <!-- Order Summary Section -->
-        <div class="checkout-section-title">📦 Sipariş Özeti</div>
+        <div class="checkout-section-title"><i class="ph ph-shopping-bag" style="vertical-align: middle; margin-right: 6px;"></i> Sipariş Özeti</div>
         <div id="checkout-order-summary" class="checkout-summary-box" style="margin-bottom: 20px;">
           <!-- Dynamically populated summary -->
         </div>
 
         <!-- Address Section -->
-        <div class="checkout-section-title">📍 Teslimat Adresi</div>
+        <div class="checkout-section-title"><i class="ph ph-map-pin" style="vertical-align: middle; margin-right: 6px;"></i> Teslimat Adresi</div>
         <div class="form-group">
-          <label for="checkout-address-select">Kayıtlı Adresleriniz</label>
-          <select id="checkout-address-select" class="form-control" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; margin-bottom: 10px;">
+          <label for="checkout-address-select" style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; display: block;">Kayıtlı Adresleriniz</label>
+          <select id="checkout-address-select" class="form-control" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; margin-bottom: 10px; transition: border-color 0.2s;">
             <!-- Saved addresses options will be injected dynamically -->
           </select>
-          <textarea id="checkout-new-address" class="form-control" rows="3" placeholder="Teslimat adresinizi giriniz..." style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; resize: none; margin-top: 10px; display: none;"></textarea>
+          <textarea id="checkout-new-address" class="form-control" rows="3" placeholder="Teslimat adresinizi giriniz..." style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; resize: none; margin-top: 10px; display: none; transition: border-color 0.2s;"></textarea>
+        </div>
+
+        <!-- Shipping Section -->
+        <div class="checkout-section-title"><i class="ph ph-truck" style="vertical-align: middle; margin-right: 6px;"></i> Kargo Firması</div>
+        <div class="shipping-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+          <label class="shipping-card active" style="border: 2px solid var(--secondary); background: #FAF6F2; padding: 12px 8px; border-radius: 10px; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: all 0.2s;">
+            <input type="radio" name="shipping-carrier" value="yurtici" checked style="display:none;" />
+            <span style="font-size: 13px; font-weight: 700; color: #0f4c81;">Yurtiçi</span>
+            <span style="font-size: 10px; color: #888;">Standart</span>
+            <span style="font-size: 11px; font-weight: 600; color: var(--secondary);">Ücretsiz</span>
+          </label>
+          <label class="shipping-card" style="border: 1px solid var(--border-color); padding: 12px 8px; border-radius: 10px; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: all 0.2s;">
+            <input type="radio" name="shipping-carrier" value="aras" style="display:none;" />
+            <span style="font-size: 13px; font-weight: 700; color: #e30613;">Aras</span>
+            <span style="font-size: 10px; color: #888;">Hızlı</span>
+            <span style="font-size: 11px; font-weight: 600; color: var(--secondary);">Ücretsiz</span>
+          </label>
+          <label class="shipping-card" style="border: 1px solid var(--border-color); padding: 12px 8px; border-radius: 10px; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: all 0.2s;">
+            <input type="radio" name="shipping-carrier" value="mng" style="display:none;" />
+            <span style="font-size: 13px; font-weight: 700; color: #ff5000;">MNG</span>
+            <span style="font-size: 10px; color: #888;">Ekonomik</span>
+            <span style="font-size: 11px; font-weight: 600; color: var(--secondary);">Ücretsiz</span>
+          </label>
         </div>
 
         <!-- Card Section -->
-        <div class="checkout-section-title">💳 Kart Bilgileri</div>
-        <div class="form-group">
-          <label for="checkout-card-name">Kart Üzerindeki İsim</label>
-          <input type="text" id="checkout-card-name" class="form-control" placeholder="Ad Soyad" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
-        </div>
-        <div class="form-group">
-          <label for="checkout-card-number">Kart Numarası</label>
-          <input type="text" id="checkout-card-number" class="form-control" maxlength="19" placeholder="0000 0000 0000 0000" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-          <div class="form-group" style="width: 48%;">
-            <label for="checkout-card-expiry">Son Kullanma Tarihi</label>
-            <input type="text" id="checkout-card-expiry" class="form-control" maxlength="5" placeholder="AA/YY" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
-          </div>
-          <div class="form-group" style="width: 48%;">
-            <label for="checkout-card-cvv">CVV (Güvenlik Kodu)</label>
-            <input type="password" id="checkout-card-cvv" class="form-control" maxlength="3" placeholder="000" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" required />
+        <div class="checkout-section-title" style="margin-bottom: 12px;"><i class="ph ph-credit-card" style="vertical-align: middle; margin-right: 6px;"></i> Ödeme Yöntemi</div>
+        
+        <!-- Virtual Credit Card UI -->
+        <div class="checkout-card-preview-container" style="margin-bottom: 20px;">
+          <div class="virtual-card" style="background: linear-gradient(135deg, #2c1a3a 0%, #170c22 100%); color: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); position: relative; overflow: hidden; height: 160px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(200,155,123,0.15) 0%, rgba(200,155,123,0) 70%); pointer-events: none;"></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; z-index: 1;">
+              <div style="font-size: 24px; color: rgba(255,255,255,0.7);"><i class="ph ph-cpu" style="font-size: 28px;"></i></div>
+              <div id="card-preview-brand" style="font-size: 16px; font-weight: 800; letter-spacing: 1px; color: #FFF; background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 6px; font-style: italic;">VISA</div>
+            </div>
+            <div id="card-preview-number" style="font-size: 18px; font-family: monospace; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); z-index: 1; margin: 10px 0;">•••• •••• •••• ••••</div>
+            <div style="display: flex; justify-content: space-between; z-index: 1;">
+              <div>
+                <span style="font-size: 8px; color: rgba(255,255,255,0.5); display: block; letter-spacing: 0.5px;">KART SAHİBİ</span>
+                <span id="card-preview-name" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">AD SOYAD</span>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 8px; color: rgba(255,255,255,0.5); display: block; letter-spacing: 0.5px;">SON KUL. TARIHI</span>
+                <span id="card-preview-expiry" style="font-size: 12px; font-weight: 600; letter-spacing: 1px;">AA/YY</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <button type="submit" class="primary-btn w-100" style="margin-top: 15px; background: #4f167a;">
+        <div class="form-group">
+          <label for="checkout-card-name" style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; display: block;">Kart Üzerindeki İsim</label>
+          <input type="text" id="checkout-card-name" class="form-control" placeholder="Ad Soyad" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s;" required />
+        </div>
+        <div class="form-group">
+          <label for="checkout-card-number" style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; display: block;">Kart Numarası</label>
+          <input type="text" id="checkout-card-number" class="form-control" maxlength="19" placeholder="0000 0000 0000 0000" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s;" required />
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;">
+          <div class="form-group" style="flex: 1; margin-bottom: 15px;">
+            <label for="checkout-card-expiry" style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; display: block;">Son Kullanma Tarihi</label>
+            <input type="text" id="checkout-card-expiry" class="form-control" maxlength="5" placeholder="AA/YY" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s;" required />
+          </div>
+          <div class="form-group" style="flex: 1; margin-bottom: 15px;">
+            <label for="checkout-card-cvv" style="font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; display: block;">CVV (Güvenlik Kodu)</label>
+            <input type="password" id="checkout-card-cvv" class="form-control" maxlength="3" placeholder="000" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s;" required />
+          </div>
+        </div>
+
+        <!-- Trust Badges & SSL Info -->
+        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin: 15px 0 20px 0; padding: 12px; background: #FAF9F8; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #666; font-weight: 600;">
+            <i class="ph ph-shield-check" style="font-size: 18px; color: #3b7a57;"></i> 256-Bit SSL Koruma
+          </div>
+          <div style="width: 1px; height: 16px; background: #DDD;"></div>
+          <div style="display: flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 700; color: #888; letter-spacing: 0.5px;">
+            <span>VISA</span> • <span>MC</span> • <span>TROY</span> • <span>AMEX</span>
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn w-100" style="margin-top: 5px; background: var(--secondary); color: white; border-radius: 8px; font-weight: 700; letter-spacing: 0.5px; transition: transform 0.2s, background-color 0.2s;">
           ÖDEMEYİ TAMAMLA & SİPARİŞ VER
         </button>
       </form>
     </div>
   </div>
 
+
+  <!-- ========================================== -->
+  <!-- 🛒 BURASI SAĞDAN AÇILAN SEPET PENCERESİ -->
+  <!-- ========================================== -->
   <!-- CART SIDEBAR -->
   <div id="cart-sidebar" class="sidebar hidden">
     <div class="sidebar-header">
