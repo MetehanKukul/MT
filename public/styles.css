@@ -234,8 +234,24 @@ a {
   color: #a46dbb;
   margin-top: 2px;
 }
-.brands-section { display: flex; justify-content: space-around; align-items: center; margin-bottom: 50px; background: transparent; padding: 30px 20px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); animation: fadeInUp 1s ease 0.5s backwards; }
+.brands-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px 25px;
+  margin-bottom: 50px;
+  background: transparent;
+  padding: 30px 20px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  animation: fadeInUp 1s ease 0.5s backwards;
+}
 .brand-item { font-size: 20px; font-weight: 400; color: #aaa; text-transform: uppercase; letter-spacing: 5px; transition: all 0.4s ease; font-family: 'Plus Jakarta Sans', sans-serif; }
+@media (max-width: 768px) {
+  .brand-item { font-size: 14px; letter-spacing: 2px; }
+  .brands-section { padding: 20px 10px; gap: 10px 15px; }
+}
 .brand-item:hover { color: var(--primary); transform: scale(1.1); text-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 .section-title { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 35px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; position: relative; }
 .section-title::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 80px; height: 3px; background: var(--secondary); transition: width 0.3s; }
