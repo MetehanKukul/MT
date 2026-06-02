@@ -411,13 +411,20 @@ function renderCartSidebar() {
       if (!product) return '';
       return `
       <div class="mini-item">
-        <div class="mini-item-img" style="background: #fff; padding: 2px;"><img src="${getProductImageUrl(product.image)}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;" onerror="this.onerror=null;this.src='${DEFAULT_PRODUCT_IMAGE}';"/></div>
-        <div class="mini-item-info">
-          <div class="mini-item-brand">${product.brand}</div>
-          <div class="mini-item-name">${product.name} (${item.qty} Adet)</div>
-          <div class="mini-item-price">${product.price}</div>
-          <button class="mini-item-remove" onclick="removeFromCart('${product.id}')">Sil</button>
+        <div class="mini-item-img">
+          <img src="${getProductImageUrl(product.image)}" alt="${product.name}" onerror="this.onerror=null;this.src='${DEFAULT_PRODUCT_IMAGE}';"/>
         </div>
+        <div class="mini-item-info">
+          <span class="mini-item-brand">${product.brand}</span>
+          <h4 class="mini-item-name">${product.name}</h4>
+          <div class="mini-item-price-row">
+            <span class="mini-item-price">${product.price}</span>
+            <span class="mini-item-qty">${item.qty} Adet</span>
+          </div>
+        </div>
+        <button class="mini-item-remove-btn" onclick="removeFromCart('${product.id}')" title="Sepetten Çıkar">
+          <i class="ph ph-trash"></i>
+        </button>
       </div>
     `;
     })
@@ -438,14 +445,20 @@ function renderFavSidebar() {
       if (!product) return '';
       return `
       <div class="mini-item">
-        <div class="mini-item-img" style="background: #fff; padding: 2px;"><img src="${getProductImageUrl(product.image)}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;" onerror="this.onerror=null;this.src='${DEFAULT_PRODUCT_IMAGE}';"/></div>
-        <div class="mini-item-info">
-          <div class="mini-item-brand">${product.brand}</div>
-          <div class="mini-item-name">${product.name}</div>
-          <div class="mini-item-price">${product.price}</div>
-          <button class="mini-item-action" onclick="addToCart('${product.id}'); removeFromFav('${product.id}')">SEPETE AT</button>
-          <button class="mini-item-remove" style="right: 110px; text-decoration: underline;" onclick="removeFromFav('${product.id}')">Kaldır</button>
+        <div class="mini-item-img">
+          <img src="${getProductImageUrl(product.image)}" alt="${product.name}" onerror="this.onerror=null;this.src='${DEFAULT_PRODUCT_IMAGE}';"/>
         </div>
+        <div class="mini-item-info">
+          <span class="mini-item-brand">${product.brand}</span>
+          <h4 class="mini-item-name">${product.name}</h4>
+          <span class="mini-item-price">${product.price}</span>
+          <button class="mini-item-action" onclick="addToCart('${product.id}'); removeFromFav('${product.id}')">
+            <i class="ph ph-shopping-bag"></i> Sepete At
+          </button>
+        </div>
+        <button class="mini-item-remove-btn" onclick="removeFromFav('${product.id}')" title="Favorilerden Çıkar">
+          <i class="ph ph-trash"></i>
+        </button>
       </div>
     `;
     })
@@ -515,7 +528,9 @@ function showCardPanel() {
     <div class="card-panel-container">
       <div class="card-top-section">
         <div class="loyalty-card-visual">
-          <div class="loyalty-card-logo">parlayan</div>
+          <div class="loyalty-card-logo">parlayan <span class="card-logo-gold">KART</span></div>
+          <div class="card-chip"></div>
+          <div class="card-contactless"><i class="ph ph-wifi-high"></i></div>
           <div class="loyalty-card-info">
             <div class="loyalty-card-number">6374 6187 2512 9106</div>
             <div class="loyalty-card-name">${escapeHtml(cardUserName)}</div>
@@ -524,41 +539,90 @@ function showCardPanel() {
         <div class="loyalty-card-benefits">
           <h4>Parlayan Kart size ne gibi faydalar sağlar?</h4>
           <ul class="benefits-list">
-            <li><span class="benefit-icon">%</span> Parlayan Kozmetik Mağazaları ve Online Alışveriş'te Özel İndirimler</li>
-            <li><span class="benefit-icon">✨</span> Marka işbirliklerine özel kampanyalardan yararlanma</li>
-            <li><span class="benefit-icon">⭐</span> Sürpriz Avantajlar</li>
-            <li><span class="benefit-icon">📦</span> Koşulsuz İade</li>
+            <li><span class="benefit-icon"><i class="ph ph-tag"></i></span> Parlayan Kozmetik Mağazaları ve Online Alışveriş'te Özel İndirimler</li>
+            <li><span class="benefit-icon"><i class="ph ph-sparkle"></i></span> Marka işbirliklerine özel kampanyalardan yararlanma</li>
+            <li><span class="benefit-icon"><i class="ph ph-gift"></i></span> Sürpriz Avantajlar</li>
+            <li><span class="benefit-icon"><i class="ph ph-package"></i></span> Koşulsuz İade</li>
           </ul>
         </div>
       </div>
       
       <div class="faq-section">
         <h4 class="faq-title">Parlayan Kart</h4>
-        <div class="faq-item">
-          <span>Nasıl Parlayan Kart üyesi olurum?</span>
-          <span class="faq-icon">+</span>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Nasıl Parlayan Kart üyesi olurum?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Ücretsiz olarak web sitemiz üzerinden kayıt formunu doldurarak veya herhangi bir Parlayan Kozmetik mağazasında kasa görevlisine cep telefonu numaranızı belirterek anında üye olabilirsiniz.
+          </div>
         </div>
-        <div class="faq-item">
-          <span>Üyelik bilgilerimi nasıl güncellerim?</span>
-          <span class="faq-icon">+</span>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Üyelik bilgilerimi nasıl güncellerim?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Profilinizdeki "Hesabım > Ayarlar" sekmesinden bilgilerinizi kendiniz düzenleyebilir ya da mağazalarımızdaki kasa sorumlularından bilgilerinizi güncellemesini isteyebilirsiniz.
+          </div>
         </div>
-        <div class="faq-item">
-          <span>Üyeliğimi nasıl iptal ederim?</span>
-          <span class="faq-icon">+</span>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Üyeliğimi nasıl iptal ederim?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Müşteri Hizmetleri numaramız (0850 210 69 00) üzerinden veya profilinizdeki iletişim formu vasıtasıyla üyelik iptal talebinizi kolayca iletebilirsiniz.
+          </div>
         </div>
-        <div class="faq-item">
-          <span>Üyeliğim iptal olmuş, yeniden üye olmak istiyorum</span>
-          <span class="faq-icon">+</span>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Üyeliğim iptal olmuş, yeniden üye olmak istiyorum</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            İptal olan üyeliğinizi aktif hale getirmek için size en yakın mağazamıza cep telefonunuzla başvurarak veya Müşteri Hizmetlerimizi arayarak saniyeler içinde yeni bir aktivasyon gerçekleştirebilirsiniz.
+          </div>
         </div>
-        <div class="faq-item">
-          <span>SMS ve e-posta gönderilmesini istiyorum. Ne yapmalıyım?</span>
-          <span class="faq-icon">+</span>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>SMS ve e-posta gönderilmesini istiyorum. Ne yapmalıyım?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            En güncel indirim ve kampanyalardan haberdar olmak için profilinizin "İletişim Tercihleri" menüsünden SMS ve E-posta izinlerini aktif hale getirmeniz yeterlidir.
+          </div>
         </div>
       </div>
     </div>
   `;
   openAccountPanel('Parlayan Kartım', html);
 }
+
+window.toggleFaq = function(element) {
+  const isActive = element.classList.contains('active');
+  
+  // Tüm diğer açık sıkça sorulan soruları kapat (Accordion etkisi)
+  const allItems = document.querySelectorAll('.faq-item');
+  allItems.forEach(item => {
+    item.classList.remove('active');
+    const ic = item.querySelector('.faq-icon');
+    if (ic) ic.textContent = '+';
+  });
+  
+  // Eğer tıklanan soru aktif değilse aç
+  if (!isActive) {
+    element.classList.add('active');
+    const icon = element.querySelector('.faq-icon');
+    if (icon) icon.textContent = '−';
+  }
+};
 
 function showPointsPanel() {
   const html = `
@@ -815,7 +879,8 @@ function setupListeners() {
     // Promo Grid Campaigns Click Handlers
     const basketDeal = event.target.closest('.promo-basket-deal');
     if (basketDeal) {
-      const dealId = basketDeal.dataset.basketDealId;
+      const activeSlide = basketDeal.querySelector('.promo-slide.active');
+      const dealId = activeSlide ? activeSlide.dataset.dealId : null;
       if (dealId) {
         showProductDetail(dealId);
       }
@@ -1718,5 +1783,58 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.textContent = toggle.textContent.replace('▼', '▶');
       }
     });
+  });
+
+  // Generic Promo Card Carousel
+  document.querySelectorAll('.promo-card').forEach((card) => {
+    const slides = card.querySelectorAll('.promo-slide');
+    const dots = card.querySelectorAll('.promo-dots .dot');
+    if (slides.length <= 1) return;
+
+    let currentIndex = 0;
+    let intervalId;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      let nextIndex = (currentIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    function startAuto() {
+      intervalId = setInterval(nextSlide, 4500);
+    }
+
+    function stopAuto() {
+      clearInterval(intervalId);
+    }
+
+    // Dot click listeners
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent triggering parent card click handlers
+        stopAuto();
+        showSlide(i);
+        startAuto();
+      });
+    });
+
+    startAuto();
   });
 });
